@@ -1,0 +1,33 @@
+<%= form_for @word do |f| %>
+	<% if @word.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@word.errors.count, "error") %> prohibited
+        this word from being saved:
+      </h2>
+      <ul>
+        <% @word.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <p>
+    <%= f.label :ord %><br>
+    <%= f.text_field :ord %>
+  </p>
+ 
+  <p>
+  	<%= f.radio_button :klasse, "verb" %>
+		<%= f.label :klasse, "Verb", :value => "verb" %>  	
+		<%= f.radio_button :klasse, "noun" %>
+  	<%= f.label :klasse, "Noun", :value => "noun" %> 
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
