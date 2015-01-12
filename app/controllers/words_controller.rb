@@ -19,7 +19,7 @@ class WordsController < ApplicationController
 	  @word = Word.new(word_params)
 	 
 	  if @word.save
-	    redirect_to @word
+	    redirect_to controller: 'welcome'
 	  else
 	    render 'new'
 	  end
