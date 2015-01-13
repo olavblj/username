@@ -3,16 +3,47 @@
 <h1>Generate a username:</h1>
  
 
-
-<%= @nouns.sample.ord.capitalize + @verbs.sample.ord.capitalize + "er" %>
+<div id='userNameBox'>Fill</div>
 <br>
-
+<input type="button" value="Generate new name" onclick="vedKlikk()">
+<br>
+<br>
 <%= link_to 'Add a new word', new_word_path %>
 
 
 <script>
-  craft = functino(){
+  var userNameBox = document.getElementById('userNameBox');
+
+  function craft(data){
+    var randVerb = data.verb;
+    var randNoun = data.noun;
+    var temp = randNoun.substr(0,1).toUpperCase() + randNoun.substr(1,randNoun.length-1) + randVerb.substr(0,1).toUpperCase() + randVerb.substr(1,randVerb.length-1);
     
+    if(randVerb.substr((randVerb.length)-1, 1) == "e"){
+      temp = temp + "r";    
+    }
+    
+    else{
+      temp = temp + "er";
+    }
+
+    userNameBox.innerHTML = temp;
   }
+
+  function vedKlikk(){
+    $.getJSON( '/index', function(data) {
+      craft(data);
+    });
+  }
+  
+    
+  
+
+
+
+  
+  
+
+  
 
 </script>
